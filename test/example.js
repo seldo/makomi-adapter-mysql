@@ -2,29 +2,21 @@
  * Testing how models will work.
  */
 
-// this bit normally happens in app.js
+/* this bit happens in app.js */
 var env = 'makomi' // production | test
 
 // load the config
 var mkSrc = require('makomi-source-util');
 mkSrc.config.setConfigFileLocation('./testapp1/.makomi/')
 mkSrc.config.setEnv(env)
+mkSrc.config.loadConfig(function(config) {
 
-// load the datasource
-var sourceDir = "./test/testapp1/.makomi/"
-var datasourceName = "maindb"
-mkSrc.loadDatasource(sourceDir,datasourceName,function(datasource) {
+  // then we'd require(datasource/datasourcename.js)
 
-  // load the adapter and configuration, and connect
-  var adapter = require(datasource.adapter)
+  /* this happens inside datasourcename.js */
 
-  mkSrc.config.loadConfig(function() {
 
-    // convert datasource.params into connection params obj
-    adapter.connect
 
-  })
+
 
 })
-
-
